@@ -17,7 +17,12 @@ const articleSchema = mongoose.Schema({
     type: [String],
     default: [],
     max:4
-  }
+  },
+  creator: {
+			type: mongoose.Schema.Types.ObjectId,
+			required: true,
+			ref: 'User',
+},
 },
  {
     timestamps: true,

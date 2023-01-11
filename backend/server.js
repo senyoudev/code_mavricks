@@ -32,7 +32,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 //Routes
-
+app.use('/api/articles',articleRoutes)
 
 const port = process.env.PORT || 5000;
 
