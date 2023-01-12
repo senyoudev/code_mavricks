@@ -4,7 +4,7 @@ import connectDb from './config/connectDb.js';
 import cors from 'cors'
 import bodyParser from 'body-parser';
 import articleRoutes from './routes/articleRoutes.js'
-
+import userRoutes from './routes/userRoutes.js'
 
 const app = express();
 app.use(
@@ -33,6 +33,7 @@ app.use(express.urlencoded({ extended: false }));
 
 //Routes
 app.use('/api/articles',articleRoutes)
+app.use('/api/users',userRoutes)
 
 const port = process.env.PORT || 5000;
 

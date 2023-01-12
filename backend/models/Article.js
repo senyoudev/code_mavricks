@@ -19,9 +19,9 @@ const articleSchema = mongoose.Schema({
     max:4
   },
   creator: {
-			type: mongoose.Schema.Types.ObjectId,
-			required: true,
-			ref: 'User',
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'User',
 },
 },
  {
