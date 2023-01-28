@@ -1,8 +1,18 @@
 import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import { useEffect } from 'react'
+import { Router,useRouter } from 'next/router'
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from 'react-toastify'
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+function MyApp({ Component, pageProps }: any) {
+  
+
+  return (
+    <div>
+      <Component {...pageProps} />
+      <ToastContainer/>
+    </div>
+  )
 }
 
 export default MyApp
