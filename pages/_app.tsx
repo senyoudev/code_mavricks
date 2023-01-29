@@ -1,6 +1,4 @@
 import "../styles/globals.css";
-import { useEffect } from "react";
-import { Router, useRouter } from "next/router";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { Inria_Serif, Maven_Pro } from "@next/font/google";
@@ -15,7 +13,7 @@ const inria_serif = Inria_Serif({
 const maven_pro = Maven_Pro({
   subsets: ["latin"],
   weight: "400",
-  variable: "--mavin-pro",
+  variable: "--maven-pro",
 });
 
 function MyApp({ Component, pageProps }: any) {

@@ -1,9 +1,5 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
-import Link from "next/link";
-import Footer from '../components/layout/Footer';
-import Header from '../components/layout/Header';
 
 
 const Home: NextPage = () => {
