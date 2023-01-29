@@ -39,7 +39,7 @@ function Footer() {
         <div className="flex flex-col justify-around">
           <div className="flex  items-center gap-5 mx-auto text-center ">
             <Link href="/">
-              <FaTwitter className="font-inria-serif   text-blackPurple " />
+              <FaTwitter className="font-inria-serif  text-blackPurple " />
             </Link>
 
             <Link href="/">

@@ -32,6 +32,9 @@ module.exports = {
       lineHeight: {
         "extra-loose": "5rem",
       },
+      dropShadow: {
+        "3xl": "1px 4px 12px #E1D1F4",
+      },
     },
   },
   plugins: [],
