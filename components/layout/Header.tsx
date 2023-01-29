@@ -4,7 +4,7 @@ import { navs } from "../../data/navs";
 
 function Header() {
   return (
-    <header className="fixed top-0 z-50 w-full bg-linearPurple">
+    <header className="w-full bg-linearPurple">
       <nav className="container py-6 px-20 h-4 md:h-14 flex items-center justify-between mx-auto  bg-blur-13">
         <Link href="/">
           <figure className="cursor-pointer">
