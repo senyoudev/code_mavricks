@@ -18,6 +18,10 @@ module.exports = {
         primaryBlack: "#1A0532",
         linearPurple: "#F3EAFF",
       },
+      fontFamily: {
+        "inria-serif": "var(--inria-serif)",
+        "maven-pro": "var(--maven-pro)"
+      },
     },
   },
   plugins: [],
