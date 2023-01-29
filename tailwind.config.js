@@ -20,7 +20,13 @@ module.exports = {
       },
       fontFamily: {
         "inria-serif": "var(--inria-serif)",
-        "maven-pro": "var(--maven-pro)"
+        "maven-pro": "var(--maven-pro)",
+      },
+      screens: {
+        sm: "480px",
+        md: "768px",
+        lg: "976px",
+        xl: "1440px",
       },
     },
   },
