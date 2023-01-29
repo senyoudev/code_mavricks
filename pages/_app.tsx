@@ -3,7 +3,8 @@ import { useEffect } from "react";
 import { Router, useRouter } from "next/router";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import { Inria_Serif,Maven_Pro } from "@next/font/google";
+import { Inria_Serif, Maven_Pro } from "@next/font/google";
+import Layout from "../components/layout/Layout";
 
 const inria_serif = Inria_Serif({
   subsets: ["latin"],
@@ -20,8 +21,10 @@ const maven_pro = Maven_Pro({
 function MyApp({ Component, pageProps }: any) {
   return (
     <main className={`${inria_serif.variable} ${maven_pro.variable}`}>
-      <Component {...pageProps} />
-      <ToastContainer />
+      <Layout>
+        <Component {...pageProps} />
+        <ToastContainer />
+      </Layout>
     </main>
   );
 }
