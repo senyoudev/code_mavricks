@@ -21,12 +21,19 @@ module.exports = {
       fontFamily: {
         "inria-serif": "var(--inria-serif)",
         "maven-pro": "var(--maven-pro)",
+        sahitya: "var(--sahitya)",
       },
       screens: {
         sm: "480px",
         md: "768px",
         lg: "976px",
         xl: "1440px",
+      },
+      lineHeight: {
+        "extra-loose": "5rem",
+      },
+      dropShadow: {
+        "3xl": "1px 4px 12px #E1D1F4",
       },
     },
   },

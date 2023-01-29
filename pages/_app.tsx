@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import { Inria_Serif, Maven_Pro } from "@next/font/google";
+import { Inria_Serif, Maven_Pro, Sahitya } from "@next/font/google";
 import Layout from "../components/layout/Layout";
 
 const inria_serif = Inria_Serif({
@@ -16,9 +16,15 @@ const maven_pro = Maven_Pro({
   variable: "--maven-pro",
 });
 
+const sahitya = Sahitya({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--sahitya",
+});
+
 function MyApp({ Component, pageProps }: any) {
   return (
-    <main className={`${inria_serif.variable} ${maven_pro.variable}`}>
+    <main className={`${inria_serif.variable} ${maven_pro.variable} ${sahitya.variable}`}>
       <Layout>
         <Component {...pageProps} />
         <ToastContainer />
