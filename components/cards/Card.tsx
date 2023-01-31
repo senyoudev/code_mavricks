@@ -5,7 +5,7 @@ function Card() {
 
     // <div className="h-56 grid grid-cols-2 gap-2 content-start">
     <div className="bg-linearPurple md:h-52  shadow-3xl items-center flex md:flex-row flex-col">
-    <div className="mx-8 flex flex-col items-center  justify-around bg-linearPurple md:h-72 h-140 md:w-7/12 shadow-3xl border-2 border-solid border-darkPurple items-center  rounded ">
+    <div className="mx-8 flex flex-col items-center  justify-around bg-secondaryPurple md:h-72 h-140 md:w-7/12 shadow-3xl border-2 border-solid border-darkPurple items-center  rounded ">
         <h3 className="font-sahitya text-blackPurple text-xl font-bold  capitalize">
             codeMavericks
         </h3>
