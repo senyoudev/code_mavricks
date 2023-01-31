@@ -8,7 +8,7 @@ function Header() {
       <nav className="container py-6 px-20 h-4 md:h-14 flex items-center justify-between mx-auto  bg-blur-13">
         <Link href="/">
           <figure className="cursor-pointer">
-            <h1 className="font-inria-serif text-xl  leading-tight text-center text-darkPurple">
+            <h1 className="font-inria-serif text-xl leading-tight text-center text-darkPurple">
               MAVERICS
             </h1>
           </figure>
