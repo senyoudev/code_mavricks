@@ -9,6 +9,6 @@ export const goals = [
   },
   {
     title: "Community",
-    desc: "CAllowing community members to contribute resources, expertise, and ideas.",
+    desc: "Allowing community members to contribute resources, expertise, and ideas.",
   },
 ];

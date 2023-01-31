@@ -17,6 +17,7 @@ module.exports = {
         blackPurple: "#340072",
         primaryBlack: "#1A0532",
         linearPurple: "#F3EAFF",
+        secondaryPurple: "rgba(191, 102, 255, 0.5)",
       },
       fontFamily: {
         "inria-serif": "var(--inria-serif)",

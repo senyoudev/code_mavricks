@@ -1,4 +1,5 @@
 export interface Ielement {
     title:string,
-    desc:string
+    desc:string,
+    button?:string
 }
