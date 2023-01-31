@@ -13,7 +13,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="bg-linearPurple px-20 w-full">
+      <div className="bg-linearPurple md:px-20 px-5 w-full">
         <section id="hero">
           <div className="container flex flex-col items-center justify-center mx-auto space-y-0 md:space-y-0">
             <h1 className="font-sahitya text-primaryBlack md:text-6xl text-2xl w-3/4  md:leading-extra-loose leading-10 md:my-20 my-10 text-center capitalize">
