@@ -26,8 +26,8 @@ function Footer() {
         </div>
         <div className="flex justify-around space-x-32">
           <div className="flex flex-col space-y-3 text-primaryBlack">
-            {navs.map(({ title }, idx) => (
-              <Link href={`#${title}`} key={idx} legacyBehavior>
+            {navs.map(({ title,link }, idx) => (
+              <Link href={link} key={idx} scroll={false} legacyBehavior>
                 <a className="cursor-pointer font-maven-pro  hover:bg-light duration-200 rounded-sm px-2 py-1">
                   {title}
                 </a>
