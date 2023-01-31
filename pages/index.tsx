@@ -29,7 +29,7 @@ const Home: NextPage = () => {
             <h1 className="font-sahitya text-primaryBlack md:text-5xl text-2xl pl-10 md:leading-extra-loose leading-10 my-20 ">
               Why MAVERICKS DAO ?
             </h1>
-            <div className="flex flex-col lg:flex-row lg:space-x-2 space-y-4">
+            <div className="flex flex-col lg:flex-row lg:space-x-2 space-y-4 lg:space-y-0">
               <div className="py-6  lg:w-3/4 lg:h-2/3   flex flex-col items-center  justify-around bg-linearPurple  shadow-3xl border-2 border-solid border-secondaryPurple items-center  rounded ">
                 <h3 className="font-sahitya text-blackPurple text-xl font-bold mb-4  capitalize">
                   codeMavericks
