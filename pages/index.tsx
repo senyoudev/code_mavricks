@@ -4,7 +4,6 @@ import Card from "../components/cards/Card";
 import TrippleCard from "../components/cards/TrippleCard";
 import { goals } from "../data/goals";
 import { Community } from "../data/Community";
-import CardCommunity from "../components/cards/CardCommuinity";
 import { Reasons } from "../data/Reasons";
 
 
