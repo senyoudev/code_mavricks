@@ -1,7 +1,5 @@
 export const navs = [
-  { title: "Plateform" },
-  { title: "Why Mavericks?" },
-  { title: "Token" },
-  { title: "Community" },
-
+  { title: "Plateform", link: "#plateform" },
+  { title: "Why Mavericks?", link: "#why" },
+  { title: "Community", link: "#community" },
 ];

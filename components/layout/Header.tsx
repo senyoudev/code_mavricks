@@ -15,8 +15,8 @@ function Header() {
         </Link>
 
         <div className="h-full hidden md:flex  text-base items-center gap-4 text-blackPurple">
-          {navs.map(({ title }, idx) => (
-            <Link href={`#${title}`} key={idx} legacyBehavior>
+          {navs.map(({ title,link }, idx) => (
+            <Link href={link} key={idx} scroll={false} legacyBehavior>
               <a className="cursor-pointer font-maven-pro hover:bg-light duration-200 rounded-sm px-2 py-1">
                 {title}
               </a>
