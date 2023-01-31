@@ -14,7 +14,7 @@ const Home: NextPage = () => {
       </Head>
 
       <div className="bg-linearPurple md:px-20 px-5 w-full">
-        <section id="hero">
+        <section id="plateform">
           <div className="container flex flex-col items-center justify-center mx-auto space-y-0 md:space-y-0">
             <h1 className="font-sahitya text-primaryBlack md:text-6xl text-2xl w-3/4  md:leading-extra-loose leading-10 md:my-20 my-10 text-center capitalize">
               Welcome to our decentralized application for digital asset
@@ -24,7 +24,7 @@ const Home: NextPage = () => {
           </div>
         </section>
 
-        <section id="Why">
+        <section id="why">
           <div className="container flex flex-col mx-auto space-y-0 md:space-y-0">
             <h1 className="font-sahitya text-primaryBlack md:text-5xl text-2xl pl-10 md:leading-extra-loose leading-10 my-20 ">
               Why MAVERICKS DAO ?
@@ -58,7 +58,7 @@ const Home: NextPage = () => {
           </div>
         </section>
 
-        <section id="hero">
+        <section id="community">
           <div className="container flex flex-col items-center justify-center pb-20  mx-auto space-y-0 md:space-y-0">
             <h1 className="font-sahitya text-primaryBlack md:text-6xl text-2xl w-3/4  md:leading-extra-loose leading-10 md:my-20 my-10 text-center capitalize">
               Our DAO Aims To Educate 1 Million Developers On The Benefits of
