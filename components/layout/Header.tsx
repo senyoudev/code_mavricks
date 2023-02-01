@@ -1,21 +1,21 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { navs } from "../../data/navs";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
-   useEffect(() => {
-     const handleResize = () => {
-      if(window.innerWidth > 768) {
-        setIsOpen(false)
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setIsOpen(false);
       }
-     };
-     window.addEventListener("resize", handleResize);
-     return () => {
-       window.removeEventListener("resize", handleResize);
-     };
-   }, []);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <header
@@ -27,13 +27,11 @@ function Header() {
     >
       <nav className=" relative container mx-auto p-6 container py-6 px-20 h-4 md:h-14  mx-auto  bg-blur-13">
         <div className="flex items-center justify-between">
-          <Link href="/">
-            <figure className="cursor-pointer">
-              <h1 className="font-inria-serif text-xl leading-tight text-center text-darkPurple">
-                MAVERICS
-              </h1>
-            </figure>
-          </Link>
+          <div className="pt-2 cursor-pointer">
+            <Link href="/">
+              <img src="/assets/images/MAVERICS.png" alt="logo" />
+            </Link>
+          </div>
 
           <div className="h-full hidden md:flex  text-base items-center gap-4 text-blackPurple">
             {navs.map(({ title, link }, idx) => (
