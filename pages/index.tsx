@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Card from "../components/cards/Card";
 import TrippleCard from "../components/cards/TrippleCard";
 import { goals } from "../data/goals";
 import { Community } from "../data/Community";
