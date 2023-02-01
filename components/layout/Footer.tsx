@@ -11,12 +11,10 @@ function Footer() {
           <div className="mx-auto my-6 text-center font-maven-pro  text-primaryBlack md:hidden">
             Copyright &copy; 2023, All Rights Reserved
           </div>
-          <div>
-            <figure className="cursor-pointer">
-              <h1 className="font-inria-serif text-xl  leading-tight text-center text-darkPurple">
-                MAVERICS
-              </h1>
-            </figure>
+          <div className="pt-2 cursor-pointer">
+            <Link href="/">
+              <img src="/assets/images/MAVERICS.png" alt="logo" />
+            </Link>
           </div>
           <div className="flex justify-center space-x-4">
             <a href="#">
@@ -26,7 +24,7 @@ function Footer() {
         </div>
         <div className="flex justify-around space-x-32">
           <div className="flex flex-col space-y-3 text-primaryBlack">
-            {navs.map(({ title,link }, idx) => (
+            {navs.map(({ title, link }, idx) => (
               <Link href={link} key={idx} scroll={false} legacyBehavior>
                 <a className="cursor-pointer font-maven-pro  hover:bg-light duration-200 rounded-sm px-2 py-1">
                   {title}
