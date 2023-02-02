@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { navs } from "../../data/navs";
 import ConnectWallet from "../Wallet/ConnectWallet"
+import ConnectModal from "../Modals/ConnectModal";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -45,7 +48,7 @@ function Header() {
             ))}
           </div>
           
-          <ConnectWallet/>
+          <ConnectWallet setShowModal={setShowModal}/>
 
           <button
             id="menu-btn"
@@ -79,6 +82,7 @@ function Header() {
           </div>
         </div>
       </nav>
+      <ConnectModal showModal={showModal} setShowModal={setShowModal}/>
     </header>
   );
 }
