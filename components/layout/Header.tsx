@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { navs } from "../../data/navs";
-import { Web3Provider } from "@ethersproject/providers";
-import { Web3ReactProvider } from "@web3-react/core";
 import ConnectWallet from "../Wallet/ConnectWallet"
 
 function Header() {
@@ -22,7 +20,6 @@ function Header() {
 
 
   return (
-    <Web3ReactProvider getLibrary={(provider: any) => new Web3Provider(provider)}>
     <header
       className={
         isOpen
@@ -83,7 +80,6 @@ function Header() {
         </div>
       </nav>
     </header>
-    </Web3ReactProvider>
   );
 }
 

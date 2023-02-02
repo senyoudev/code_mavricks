@@ -3,6 +3,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { Inria_Serif, Maven_Pro, Sahitya } from "@next/font/google";
 import Layout from "../components/layout/Layout";
+import { Web3Provider } from "@ethersproject/providers";
+import { Web3ReactProvider } from "@web3-react/core";
+
 
 const inria_serif = Inria_Serif({
   subsets: ["latin"],
@@ -24,12 +27,18 @@ const sahitya = Sahitya({
 
 function MyApp({ Component, pageProps }: any) {
   return (
-    <main className={`${inria_serif.variable} ${maven_pro.variable} ${sahitya.variable}`}>
-      <Layout>
-        <Component {...pageProps} />
-        <ToastContainer />
-      </Layout>
-    </main>
+    <Web3ReactProvider
+      getLibrary={(provider: any) => new Web3Provider(provider)}
+    >
+      <main
+        className={`${inria_serif.variable} ${maven_pro.variable} ${sahitya.variable}`}
+      >
+        <Layout>
+          <Component {...pageProps} />
+          <ToastContainer />
+        </Layout>
+      </main>
+    </Web3ReactProvider>
   );
 }
 
