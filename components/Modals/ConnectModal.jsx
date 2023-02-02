@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
-const ConnectModal = ({showModal,setShowModal}:any) => {
+
+const ConnectModal = ({ showModal, setShowModal,connectCoinbase,connectMetamask,connectWalletConnect }) => {
+  
 
   return (
     <div className="relative ">
@@ -18,21 +20,31 @@ const ConnectModal = ({showModal,setShowModal}:any) => {
               </button>
             </div>
             <div className="mt-4">
-              <button className="w-full p-2 border-2 flex items-center justify-center border-secondaryPurple rounded hover:bg-white">
-                <img
-                  src="./assets/images/coinbase.svg"
-                  className="w-6 h-6 mr-2"
-                />
-                Coinbase
-              </button>
-              <button className="w-full flex items-center justify-center p-2 border-2 border-secondaryPurple rounded hover:bg-white mt-2">
+              <button
+                className="w-full flex items-center justify-center p-2 border-2 border-secondaryPurple rounded hover:bg-white mt-2"
+                onClick={() => connectMetamask()}
+              >
                 <img
                   src="./assets/images/metamask.svg"
                   className="w-6 h-6 mr-2"
                 />
                 MetaMask
               </button>
-              <button className="w-full flex items-center justify-center p-2 border-2 border-secondaryPurple rounded hover:bg-white mt-2">
+              <button
+                className="w-full p-2 border-2 flex items-center justify-center border-secondaryPurple rounded hover:bg-white"
+                onClick={() => connectCoinbase()}
+              >
+                <img
+                  src="./assets/images/coinbase.svg"
+                  className="w-6 h-6 mr-2"
+                />
+                Coinbase
+              </button>
+
+              <button
+                className="w-full flex items-center justify-center p-2 border-2 border-secondaryPurple rounded hover:bg-white mt-2"
+                onClick={() => connectWalletConnect()}
+              >
                 <img
                   src="./assets/images/walletconnect.svg"
                   className="w-6 h-6 mr-2"

@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { navs } from "../../data/navs";
-import ConnectWallet from "../Wallet/ConnectWallet"
+import ConnectWallet from "../Wallet/ConnectWallet";
 import ConnectModal from "../Modals/ConnectModal";
+import { useWeb3React } from "@web3-react/core";
+import {
+  injected,
+  resetWalletConnector,
+  walletconnect,
+  walletlink,
+} from "../../utils/connectors";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
-
 
   useEffect(() => {
     const handleResize = () => {
@@ -21,6 +27,56 @@ function Header() {
     };
   }, []);
 
+  const { activate } = useWeb3React();
+
+  //web3react metamask
+
+  //web3react metamask
+  const connectMetamask = async () => {
+    try {
+      await activate(injected);
+      localStorage.setItem("wallet", JSON.stringify("metamask"));
+    } catch (ex) {
+      console.log(ex);
+    }
+  };
+
+  //web3react walletconnect
+  const connectWalletConnect = async () => {
+    try {
+      resetWalletConnector(walletconnect);
+      await activate(walletconnect);
+      localStorage.setItem("wallet", JSON.stringify("walletconnect"));
+    } catch (ex) {
+      console.log(ex);
+    }
+  };
+
+  //web3react coinbase
+  const connectCoinbase = async () => {
+    try {
+      await activate(walletlink);
+      localStorage.setItem("wallet", JSON.stringify("coinbase"));
+    } catch (ex) {
+      console.log(ex);
+    }
+  };
+
+  const connectWalletOnPageLoad = async () => {
+    if (localStorage?.getItem("wallet")) {
+      console.log(localStorage.getItem("wallet"));
+      if (JSON.parse(localStorage.getItem("wallet")) == "metamask")
+        await connectMetamask();
+      else if (JSON.parse(localStorage.getItem("wallet")) == "coinbase")
+        await connectCoinbase();
+      else if (JSON.parse(localStorage.getItem("wallet")) == "walletconnect")
+        await connectWalletConnect();
+    }
+  };
+  //To keep the wallet connected on refresh
+  useEffect(() => {
+    connectWalletOnPageLoad();
+  }, []);
 
   return (
     <header
@@ -47,8 +103,8 @@ function Header() {
               </Link>
             ))}
           </div>
-          
-          <ConnectWallet setShowModal={setShowModal}/>
+
+          <ConnectWallet setShowModal={setShowModal} />
 
           <button
             id="menu-btn"
@@ -82,7 +138,13 @@ function Header() {
           </div>
         </div>
       </nav>
-      <ConnectModal showModal={showModal} setShowModal={setShowModal}/>
+      <ConnectModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        connectCoinbase={connectCoinbase}
+        connectMetamask={connectMetamask}
+        connectWalletConnect={connectWalletConnect}
+      />
     </header>
   );
 }
