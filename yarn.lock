@@ -1412,8 +1412,8 @@
 
 "eth-sig-util@^1.4.2":
   "integrity" "sha512-iNZ576iTOGcfllftB73cPB5AN+XUQAT/T8xzsILsghXC1o8gJUqe3RHlcDqagu+biFpYQ61KQrZZJza8eRSYqw=="
-  "resolved" "https://registry.npmjs.org/ethereumjs-abi/-/ethereumjs-abi-1.4.2.tgz"
-  "version" "1.4.2"
+  "resolved" "https://registry.npmjs.org/ethereumjs-abi/-/ethereumjs-abi-0.6.8.tgz"
+  "version" "0.6.8"
   dependencies:
     "ethereumjs-abi" "git+https://github.com/ethereumjs/ethereumjs-abi.git"
     "ethereumjs-util" "^5.1.1"
