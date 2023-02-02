@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { navs } from "../../data/navs";
+import { Web3Provider } from "@ethersproject/providers";
+import { Web3ReactProvider } from "@web3-react/core";
+import ConnectWallet from "../Wallet/ConnectWallet"
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +20,9 @@ function Header() {
     };
   }, []);
 
+
   return (
+    <Web3ReactProvider getLibrary={(provider: any) => new Web3Provider(provider)}>
     <header
       className={
         isOpen
@@ -42,10 +47,8 @@ function Header() {
               </Link>
             ))}
           </div>
-
-          <button className="hidden md:block mt-0 py-0.5 px-3 rounded  text-darkPurple border-2 border-solid border-darkPurple font-maven-pro  font-bold  duration-300">
-            Connect Wallet
-          </button>
+          
+          <ConnectWallet/>
 
           <button
             id="menu-btn"
@@ -80,6 +83,7 @@ function Header() {
         </div>
       </nav>
     </header>
+    </Web3ReactProvider>
   );
 }
 
