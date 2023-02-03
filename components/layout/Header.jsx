@@ -36,6 +36,7 @@ function Header() {
     try {
       await activate(injected);
       localStorage.setItem("wallet", JSON.stringify("metamask"));
+      setShowModal(false);
     } catch (ex) {
       console.log(ex);
     }
@@ -47,6 +48,7 @@ function Header() {
       resetWalletConnector(walletconnect);
       await activate(walletconnect);
       localStorage.setItem("wallet", JSON.stringify("walletconnect"));
+      setShowModal(false);
     } catch (ex) {
       console.log(ex);
     }
@@ -57,6 +59,7 @@ function Header() {
     try {
       await activate(walletlink);
       localStorage.setItem("wallet", JSON.stringify("coinbase"));
+      setShowModal(false);
     } catch (ex) {
       console.log(ex);
     }
@@ -82,7 +85,7 @@ function Header() {
     <header
       className={
         isOpen
-          ? "w-full bg-linearPurple pb-48 transition-all ease-in-out duration-300"
+          ? "w-full bg-linearPurple  pb-48 transition-all ease-in-out duration-300"
           : "w-full bg-linearPurple transition-all ease-in-out duration-300 "
       }
     >
@@ -124,7 +127,7 @@ function Header() {
         <div className="md:hidden">
           <div
             id="menu"
-            className={`absolute card flex-col z-10 items-center rounded-md  self-end py-8 space-y-6 font-bold bg-primaryPink sm:w-auto sm:self-center left-6 right-6 drop-shadow-md ${
+            className={`absolute card flex-col z-10 items-center mt-2 rounded-md  self-end py-8 space-y-6 font-bold bg-primaryPink sm:w-auto sm:self-center left-6 right-6 drop-shadow-md ${
               isOpen ? "flex" : "hidden"
             }`}
           >
