@@ -14,9 +14,8 @@ function MobileMenu({ navs, isOpen, setIsOpen }: mobilemenuProps) {
   useOnClickOutside(menuRef, () => setIsOpen(false));
 
   return (
-    <div className="md:hidden">
+    <div className="md:hidden" ref={menuRef}>
       <div
-        ref={menuRef}
         id="menu"
         className={`absolute card flex-col z-10 items-center mt-2 rounded-md  self-end py-8 space-y-6 font-bold bg-primaryPink sm:w-auto sm:self-center left-6 right-6 drop-shadow-md ${
           isOpen ? "flex" : "hidden"

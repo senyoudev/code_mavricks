@@ -8,7 +8,7 @@ import { links } from "../../data/links";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 
 function ConnectWallet() {
-  const { active, account } = useWeb3React();
+  const { account } = useWeb3React();
   const balance = useBalance();
   const accountLength = String(account).length;
   const menuRef = useRef(null);
@@ -19,19 +19,20 @@ function ConnectWallet() {
 
   const toggleMenu = () => setClicked(!clicked);
 
-   useEffect(() => {
-     const handleResize = () => {
-         setClicked(false);
-       
-     };
-     window.addEventListener("resize", handleResize);
-     return () => {
-       window.removeEventListener("resize", handleResize);
-     };
-   }, []);
+  useEffect(() => {
+    const handleResize = () => {
+      if (clicked) {
+        setClicked(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
-    <div className="relative">
+    <div className="relative" ref={menuRef}>
       {account ? (
         <button
           className="hidden  md:flex md:items-center mt-0 py-2 px-3 rounded  text-darkPurple border-2 border-solid border-darkPurple font-maven-pro  font-bold  duration-300 "
@@ -46,12 +47,11 @@ function ConnectWallet() {
             )} / ${balance}`}
         </button>
       ) : (
-        <figure>Connect Wallet</figure>
+        <figure onClick={toggleMenu}>Connect Wallet</figure>
       )}
       <ul
-        ref={menuRef}
         className={clsx(
-          "absolute top-12  font-bold bg-primaryPink w-full rounded-md ",
+          "absolute top-11  font-bold bg-primaryPink w-full rounded-md ",
           {
             "h-auto duration-200 py-4 shadow-md border border-slate-200":
               clicked,
@@ -62,33 +62,20 @@ function ConnectWallet() {
         {links.map((item, idx) => (
           <li
             onClick={() => setClicked(false)}
-            className="group w-full cursor-pointer flex justify-center  font-maven-pro hover:bg-secondaryPurple hover:text-white hover:px-4 hover:py-2 hover:rounded duration-200 rounded-sm px-2 py-1"
+            className="group w-full cursor-pointer text-blackPurple font-maven-pro hover:bg-secondaryPurple hover:text-white hover:px-4 hover:py-2 hover:rounded duration-200 rounded-sm px-2 py-1"
             key={idx}
           >
             <Link href="/profile" legacyBehavior>
-              <a className="flex gap-1 ">{item.title}</a>
+              <a className="flex gap-1 flex items-center ">
+                <item.icon />
+                {item.title}
+              </a>
             </Link>
           </li>
         ))}
       </ul>
     </div>
   );
-
-  // <button
-  //   onClick={() => {
-  //     if(!account) setShowModal(true)
-  //   }}
-  //   className="hidden md:block mt-0 py-0.5 px-3 rounded  text-darkPurple border-2 border-solid border-darkPurple font-maven-pro  font-bold  duration-300"
-  // >
-  //   {active
-  //     ? `${String(account).substring(0, 4)}` +
-  //       "..." +
-  //       `${String(account).substring(
-  //         accountLength - 4,
-  //         accountLength
-  //       )} / ${balance}`
-  //     : "Connect your wallet"}
-  // </button>
 }
 
 export default ConnectWallet;

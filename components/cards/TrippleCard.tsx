@@ -8,7 +8,7 @@ function TrippleCard({ elements }: any) {
     <div className="bg-linearPurple w-full md:h-52  shadow-3xl border-2 border-solid border-secondaryPurple items-center  rounded flex md:flex-row flex-col">
       {elements.map((element: Ielement, index: number) => (
         <>
-          <div className="md:w-1/3 flex flex-col items-center justify-around">
+          <div className="md:w-1/3 flex flex-col items-center justify-around" key={index}>
             <h3 className="font-sahitya text-blackPurple text-xl font-bold text-center capitalize">
               {element.title}
             </h3>
