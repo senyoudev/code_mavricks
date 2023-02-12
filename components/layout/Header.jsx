@@ -136,7 +136,7 @@ function Header() {
           </button>
         </div>
 
-        <MobileMenu navs={navs} isOpen={isOpen} />
+        <MobileMenu navs={navs} isOpen={isOpen} setIsOpen={setIsOpen} />
       </nav>
       <ConnectModal
         showModal={showModal}

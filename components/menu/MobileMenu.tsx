@@ -1,17 +1,22 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Inav } from "../../interfaces/Inav";
 import Link from "next/link";
-
+import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 
 type mobilemenuProps = {
-    navs:Inav[],
-    isOpen:boolean
-}
+  navs: Inav[];
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-function MobileMenu({navs,isOpen}:mobilemenuProps) {
+function MobileMenu({ navs, isOpen, setIsOpen }: mobilemenuProps) {
+  const menuRef = useRef(null);
+  useOnClickOutside(menuRef, () => setIsOpen(false));
+
   return (
     <div className="md:hidden">
       <div
+        ref={menuRef}
         id="menu"
         className={`absolute card flex-col z-10 items-center mt-2 rounded-md  self-end py-8 space-y-6 font-bold bg-primaryPink sm:w-auto sm:self-center left-6 right-6 drop-shadow-md ${
           isOpen ? "flex" : "hidden"
