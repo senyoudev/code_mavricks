@@ -4,11 +4,15 @@ import useBalance from "../../hooks/useBalance";
 import { FaUserAlt } from "react-icons/fa";
 import clsx from "clsx";
 import Link from "next/link";
-import { links } from "../../data/links";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
+import ProfileIcon from "../icons/ProfileIcon";
+import ProposalIcons from "../icons/ProposalIcons";
+import CollectionIcon from "../icons/CollectionIcon";
+import TokenIcon from "../icons/TokenIcon";
+import SignOutIcon from "../icons/SignOutIcon";
 
 function ConnectWallet() {
-  const { account } = useWeb3React();
+  const { account, deactivate } = useWeb3React();
   const balance = useBalance();
   const accountLength = String(account).length;
   const menuRef = useRef(null);
@@ -18,6 +22,11 @@ function ConnectWallet() {
   const [clicked, setClicked] = useState(false);
 
   const toggleMenu = () => setClicked(!clicked);
+
+  const handleLogout = async () => {
+    await deactivate();
+    localStorage.removeItem("wallet");
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -59,20 +68,58 @@ function ConnectWallet() {
           }
         )}
       >
-        {links.map((item, idx) => (
-          <li
-            onClick={() => setClicked(false)}
-            className="group w-full cursor-pointer text-blackPurple font-maven-pro hover:bg-secondaryPurple hover:text-white hover:px-4 hover:py-2 hover:rounded duration-200 rounded-sm px-2 py-1"
-            key={idx}
+        <li
+          onClick={() => setClicked(false)}
+          className="group w-full cursor-pointer text-blackPurple font-maven-pro hover:bg-secondaryPurple hover:text-white hover:px-4 hover:py-2 hover:rounded duration-200 rounded-sm px-2 py-1"
+        >
+          <button className="flex gap-1 flex items-center ">
+              <ProfileIcon />
+              Profil
+          </button>
+        </li>
+
+        <li
+          onClick={() => setClicked(false)}
+          className="group w-full cursor-pointer text-blackPurple font-maven-pro hover:bg-secondaryPurple hover:text-white hover:px-4 hover:py-2 hover:rounded duration-200 rounded-sm px-2 py-1"
+        >
+          <button className="flex gap-1 flex items-center ">
+            <ProposalIcons />
+            Proposals
+          </button>
+        </li>
+
+        <li
+          onClick={() => setClicked(false)}
+          className="group w-full cursor-pointer text-blackPurple font-maven-pro hover:bg-secondaryPurple hover:text-white hover:px-4 hover:py-2 hover:rounded duration-200 rounded-sm px-2 py-1"
+        >
+          <button className="flex gap-1 flex items-center ">
+            <CollectionIcon />
+            MarketPlace
+          </button>
+        </li>
+
+        <li
+          onClick={() => setClicked(false)}
+          className="group w-full cursor-pointer text-blackPurple font-maven-pro hover:bg-secondaryPurple hover:text-white hover:px-4 hover:py-2 hover:rounded duration-200 rounded-sm px-2 py-1"
+        >
+          <button className="flex gap-1 flex items-center ">
+            <TokenIcon />
+            Token
+          </button>
+        </li>
+
+        <li
+          onClick={() => setClicked(false)}
+          className="group w-full cursor-pointer text-blackPurple font-maven-pro hover:bg-secondaryPurple hover:text-white hover:px-4 hover:py-2 hover:rounded duration-200 rounded-sm px-2 py-1"
+        >
+          <button
+            className="flex gap-1 flex items-center "
+            onClick={handleLogout}
           >
-            <Link href="/profile" legacyBehavior>
-              <a className="flex gap-1 flex items-center ">
-                <item.icon />
-                {item.title}
-              </a>
-            </Link>
-          </li>
-        ))}
+            <SignOutIcon />
+            SignOut
+          </button>
+        </li>
       </ul>
     </div>
   );
