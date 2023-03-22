@@ -5,6 +5,9 @@ import { Inria_Serif, Maven_Pro, Sahitya } from "@next/font/google";
 import Layout from "../components/layout/Layout";
 import { Web3Provider } from "@ethersproject/providers";
 import { Web3ReactProvider } from "@web3-react/core";
+import { done, start } from "nprogress";
+import { Router } from "next/router";
+
 
 
 const inria_serif = Inria_Serif({
@@ -26,6 +29,9 @@ const sahitya = Sahitya({
 });
 
 function MyApp({ Component, pageProps }: any) {
+   Router.events.on("routeChangeStart", () => start());
+   Router.events.on("routeChangeComplete", () => done());
+   Router.events.on("routeChangeError", () => done());
   return (
     <Web3ReactProvider
       getLibrary={(provider: any) => new Web3Provider(provider)}
