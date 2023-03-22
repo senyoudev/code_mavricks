@@ -68,45 +68,53 @@ function ConnectWallet() {
           }
         )}
       >
-        <li
-          onClick={() => setClicked(false)}
-          className="group w-full cursor-pointer text-blackPurple font-maven-pro hover:bg-secondaryPurple hover:text-white hover:px-4 hover:py-2 hover:rounded duration-200 rounded-sm px-2 py-1"
-        >
-          <button className="flex gap-1 flex items-center ">
+        <Link href={"/profil"}>
+          <li
+            onClick={() => setClicked(false)}
+            className="group w-full cursor-pointer text-blackPurple font-maven-pro hover:bg-secondaryPurple hover:text-white hover:px-4 hover:py-2 hover:rounded duration-200 rounded-sm px-2 py-1"
+          >
+            <button className="flex gap-1 flex items-center ">
               <ProfileIcon />
               Profil
-          </button>
-        </li>
+            </button>
+          </li>
+        </Link>
 
-        <li
-          onClick={() => setClicked(false)}
-          className="group w-full cursor-pointer text-blackPurple font-maven-pro hover:bg-secondaryPurple hover:text-white hover:px-4 hover:py-2 hover:rounded duration-200 rounded-sm px-2 py-1"
-        >
-          <button className="flex gap-1 flex items-center ">
-            <ProposalIcons />
-            Proposals
-          </button>
-        </li>
+        <Link href={"/proposals"}>
+          <li
+            onClick={() => setClicked(false)}
+            className="group w-full cursor-pointer text-blackPurple font-maven-pro hover:bg-secondaryPurple hover:text-white hover:px-4 hover:py-2 hover:rounded duration-200 rounded-sm px-2 py-1"
+          >
+            <button className="flex gap-1 flex items-center ">
+              <ProposalIcons />
+              Proposals
+            </button>
+          </li>
+        </Link>
 
-        <li
-          onClick={() => setClicked(false)}
-          className="group w-full cursor-pointer text-blackPurple font-maven-pro hover:bg-secondaryPurple hover:text-white hover:px-4 hover:py-2 hover:rounded duration-200 rounded-sm px-2 py-1"
-        >
-          <button className="flex gap-1 flex items-center ">
-            <CollectionIcon />
-            MarketPlace
-          </button>
-        </li>
+        <Link href={"/marketplace"}>
+          <li
+            onClick={() => setClicked(false)}
+            className="group w-full cursor-pointer text-blackPurple font-maven-pro hover:bg-secondaryPurple hover:text-white hover:px-4 hover:py-2 hover:rounded duration-200 rounded-sm px-2 py-1"
+          >
+            <button className="flex gap-1 flex items-center ">
+              <CollectionIcon />
+              MarketPlace
+            </button>
+          </li>
+        </Link>
 
-        <li
-          onClick={() => setClicked(false)}
-          className="group w-full cursor-pointer text-blackPurple font-maven-pro hover:bg-secondaryPurple hover:text-white hover:px-4 hover:py-2 hover:rounded duration-200 rounded-sm px-2 py-1"
-        >
-          <button className="flex gap-1 flex items-center ">
-            <TokenIcon />
-            Token
-          </button>
-        </li>
+        <Link href={'/token'}>
+          <li
+            onClick={() => setClicked(false)}
+            className="group w-full cursor-pointer text-blackPurple font-maven-pro hover:bg-secondaryPurple hover:text-white hover:px-4 hover:py-2 hover:rounded duration-200 rounded-sm px-2 py-1"
+          >
+            <button className="flex gap-1 flex items-center ">
+              <TokenIcon />
+              Token
+            </button>
+          </li>
+        </Link>
 
         <li
           onClick={() => setClicked(false)}
