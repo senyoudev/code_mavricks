@@ -90,7 +90,7 @@ function Header() {
           : "w-full bg-linearPurple transition-all ease-in-out duration-300 "
       }
     >
-      <nav className=" relative container mx-auto p-6 container py-6 px-20 h-4 md:h-14  mx-auto  bg-blur-13">
+      <nav className=" relative  p-6 container py-6 px-20  mx-auto  bg-blur-13">
         <div className="flex items-center justify-between">
           <div className="pt-2 cursor-pointer">
             <Link href="/">
