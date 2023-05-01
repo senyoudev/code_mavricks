@@ -77,7 +77,7 @@ const Profil = () => {
   <div className="flex flex-col items-center justify-around lg:w-1/5">
     <p className="p-8 font-sahitya font-bold text-2xl leading-10 flex items-center capitalize text-purple-800">Your proposals</p>
   </div>
-  <div className="flex flex-col justify-center items-center lg:w-4/5 lg:pl-8">
+  <div className="flex flex- col justify-center items-center lg:w-4/5 lg:pl-8">
   <div className="flex flex-col lg:flex-row justify-center lg:justify-between">
     <div className="flex flex-col items-center justify-around w-full lg:w-5/12 max-w-xl bg-gradient-to-br from-purple-100 to-purple-200 border-2 border-purple-700 shadow-md rounded-md px-4 py-6 lg:py-8" style={{ border: "3px solid #1A0532", filter: "drop-shadow(3px 3px 0px #1A0532)", borderRadius: "5px" }}>
       <p className="font-sahitya font-bold text-lg leading-6 flex items-center capitalize text-purple-900">add a new cours</p>
