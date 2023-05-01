@@ -10,6 +10,7 @@ import ProposalIcons from "../icons/ProposalIcons";
 import CollectionIcon from "../icons/CollectionIcon";
 import TokenIcon from "../icons/TokenIcon";
 import SignOutIcon from "../icons/SignOutIcon";
+import profil from "../../pages/profil";
 
 function ConnectWallet() {
   const { account, deactivate } = useWeb3React();
