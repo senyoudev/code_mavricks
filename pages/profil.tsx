@@ -1,6 +1,14 @@
 import React from "react";
+import { useWeb3React } from "@web3-react/core";
+import useBalance from "../hooks/useBalance";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEthereum } from "@fortawesome/free-brands-svg-icons";
 
+  
 const Profil = () => {
+  const { account, deactivate } = useWeb3React();
+  const balance = useBalance();
+  const accountLength = String(account).length;
   return (
     <div className="bg-linearPurple md:px-70 py-16 w-full flex items-center justify-center">
 <div className="container px-10 py-6 flex flex-col justify-around items-center bg-linearPurple shadow-3xl border-2 border-solid border-secondaryPurple rounded"
@@ -28,10 +36,27 @@ const Profil = () => {
   </div>
 
   <div className="col-span-1 md:col-span-2 flex " style={{padding: "40px 70px"}}>
-    <div className="flex flex-col ml-4">
-      <p style={{ fontFamily: "'Sahitya', sans-serif", fontStyle: "normal", fontWeight: 700, fontSize: "30px", lineHeight: "47px", display: "flex", alignItems: "center", textTransform: "capitalize", color: "#340072" }}>2.345 ETH</p>
-      <p className="font-maven-pro font-normal font-bold text-purple-600 text-base leading-5 flex items-center capitalize">0x9eD0483300AD3Bd24F6aec0f0722E5586D9c6652 </p>
-    </div>
+<div className="flex items-center">
+  <div className="flex flex-col ml-2">
+    <p style={{
+      fontFamily: "'Sahitya', sans-serif",
+      fontStyle: "normal",
+      fontWeight: 700,
+      fontSize: "30px",
+      lineHeight: "47px",
+      display: "flex",
+      alignItems: "center",
+      textTransform: "capitalize",
+      color: "#340072"
+    }}>
+      {balance}
+    </p>
+    <p className="font-maven-pro font-normal font-bold text-purple-600 text-base leading-5 flex items-center capitalize">
+      {String(account)}
+    </p>
+  </div>
+</div>
+
   </div>
 
   <div className="col-span-1 md:col-span-2 lg:col-span-2 flex flex-col items-center " style={{padding: "30px"}}>
