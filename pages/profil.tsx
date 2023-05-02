@@ -1,8 +1,6 @@
 import React from "react";
 import { useWeb3React } from "@web3-react/core";
 import useBalance from "../hooks/useBalance";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEthereum } from "@fortawesome/free-brands-svg-icons";
 
   
 const Profil = () => {
