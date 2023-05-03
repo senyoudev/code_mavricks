@@ -18,7 +18,7 @@ const Profil = () => {
   const accountLength = String(account).length;
   return (
     <div className="bg-linearPurple md:px-70 py-16 w-full flex items-center justify-center">
-      <div className="container mx-auto px-10 py-6 flex flex-col justify-around items-center bg-linearPurple shadow-3xl border-2 border-solid border-secondaryPurple rounded">
+      <div className="container mx-auto px-10 py-6 flex flex-col justify-around items-center bg-linearPurple shadow-3xl border-2 border-solid border-secondaryPurple rounded" style={{maxWidth:"1440px"}}>
         <div className="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-5 gap-4">
           <div className="col-span-1 flex items-center justify-center">
             <Image
