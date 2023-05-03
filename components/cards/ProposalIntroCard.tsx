@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 function ProposalIntroCard() {
@@ -23,9 +24,9 @@ function ProposalIntroCard() {
             <p className="text-sm text-gray-500">Total Balance: 10,000 ETH</p>
           </div>
         </div>
-        <button className="text-white bg-darkPurple hover:bg-blackPurple  font-medium py-2 px-4 rounded">
+        <Link href='/proposals/create' className="text-white bg-darkPurple hover:bg-blackPurple  font-medium py-2 px-4 rounded">
           Create Proposal
-        </button>
+        </Link>
       </div>
     </div>
   );
