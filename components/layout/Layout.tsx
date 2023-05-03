@@ -5,11 +5,11 @@ import { useRouter } from "next/router";
 
 export default function Layout({ children }: { children: ReactNode }) {
   const { route } = useRouter();
-  if (route === "/token") {
+  if (route === "/token" || route==="/404") {
     return (
       <>
         <Header />
-        <main className="w-full bg-linearPurple flex items-center" style={{height:'70vh'}}>
+        <main className="w-full bg-linearPurple" style={{height:'70vh'}}>
           {children}
         </main>
         <Footer />
