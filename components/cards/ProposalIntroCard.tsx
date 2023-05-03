@@ -2,7 +2,7 @@ import React from "react";
 
 function ProposalIntroCard() {
   return (
-    <div className="max-w-7xl mx-auto bg-linearPurple rounded-lg shadow-md  overflow-hidden sm:rounded-lg mb-20">
+    <div className="max-w-7xl mx-auto bg-white rounded-md shadow-lg w-full overflow-hidden sm:rounded-lg mb-20">
       <div className="px-4 py-5 sm:px-6 flex justify-between items-center">
         <div className="flex space-x-4 items-center">
           <img
