@@ -2,9 +2,9 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useWeb3React } from "@web3-react/core";
-import ProposalIntroCard from "../components/cards/ProposalIntroCard";
-import ProposalCard from "../components/cards/ProposalCard";
-import { proposalsData } from "../data/proposals";
+import ProposalIntroCard from "../../components/cards/ProposalIntroCard";
+import ProposalCard from "../../components/cards/ProposalCard";
+import { proposalsData } from "../../data/proposals";
 
 function proposals() {
   const { account } = useWeb3React();
