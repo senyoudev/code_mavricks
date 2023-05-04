@@ -4,6 +4,7 @@ import { IconButton } from "./NFTs/IconButton";
 import { EyeIcon } from "./NFTs/EyeIcon";
 import { EditIcon } from"./NFTs/EditIcon";
 import { DeleteIcon } from "./NFTs/DeleteIcon";
+import { Key } from "react";
 
 export default function TableNFT() {
   const columns = [
@@ -64,7 +65,7 @@ export default function TableNFT() {
       email: "kristen.cooper@example.com",
     },
   ];
-  const renderCell = (user, columnKey) => {
+  const renderCell = (user: { [x: string]: any; id: any; name?: string; role?: string; team: any; status: any; age?: string; avatar: any; email: any; }, columnKey: Key) => {
     const cellValue = user[columnKey];
     switch (columnKey) {
       case "name":
