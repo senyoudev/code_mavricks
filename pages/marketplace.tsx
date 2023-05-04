@@ -13,7 +13,7 @@ export default function marketplace() {
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <div className=" min-h-screen flex flex-col">
-      <main className="flex-grow px-20  justify-between">
+      <main className="flex-grow px-20 justify-between">
         <TableNFT/>
         <div className="max-w-7xl">
           <h1 className="font-sahitya text-primaryBlack md:text-5xl text-2xl pl-10 lg:pl-32 md:leading-extra-loose  ">
