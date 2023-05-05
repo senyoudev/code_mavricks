@@ -5,13 +5,10 @@ import { useWeb3React } from "@web3-react/core";
 import ProposalIntroCard from "../../components/cards/ProposalIntroCard";
 import ProposalCard from "../../components/cards/ProposalCard";
 import { proposalsData } from "../../data/proposals";
-import { useContract } from "../../hooks/useContract";
-import CodeMavericksGouvernance from "../../contracts/CodeMavericksGouvernance.json";
 
 function proposals() {
   const { account } = useWeb3React();
-  const codeMavericksGvrnance = useContract(CodeMavericksGouvernance);
-  console.log("contract", codeMavericksGvrnance);
+
   const router = useRouter();
 
   //   useEffect(() => {
