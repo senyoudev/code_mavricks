@@ -5,11 +5,15 @@ import { useWeb3React } from "@web3-react/core";
 import ProposalIntroCard from "../../components/cards/ProposalIntroCard";
 import ProposalCard from "../../components/cards/ProposalCard";
 import { proposalsData } from "../../data/proposals";
+import CodeMavericksGouvernance from "../../contracts/CodeMavericksGouvernance.json";
+import { useContract } from '../../hooks/useContract'
 
 function proposals() {
   const { account } = useWeb3React();
 
   const router = useRouter();
+  const contract = useContract(CodeMavericksGouvernance)
+  console.log("contract",contract)
 
   //   useEffect(() => {
   //     // This code will only run on the client-side
