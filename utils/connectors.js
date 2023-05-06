@@ -10,7 +10,7 @@ const RPC_URLS = {
 
 //metamask
 export const injected = new InjectedConnector({
-  supportedChainIds: [1, 1337, 3, 4, 5, 42],
+  supportedChainIds: [1, 1337, 3, 4, 5, 42,80001],
 });
 
 export const walletconnect = new WalletConnectConnector({
