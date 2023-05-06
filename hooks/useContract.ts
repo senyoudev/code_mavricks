@@ -2,11 +2,28 @@ import { useEffect, useMemo, useState } from "react";
 import { AddressZero } from "@ethersproject/constants";
 import { useWeb3React } from "@web3-react/core";
 import Web3 from "web3";
+import { Contract } from "web3-eth-contract";
 
-export function useContract(contractJson) {
+interface ContractJson {
+  networks: {
+    [networkId: number]: {
+      address: string;
+    };
+  };
+  abi: any[];
+}
+
+interface ContractInstance {
+  contract: Contract | undefined;
+  address: string;
+  error: string;
+}
+
+export function useContract(contractJson: ContractJson): ContractInstance {
   const [address, setAddress] = useState(AddressZero);
-  const [instance, setInstance] = useState();
+  const [instance, setInstance] = useState<Contract>();
   const [error, setError] = useState("");
+
   const { library, account, chainId } = useWeb3React();
   const signerOrProvider = account
     ? library.getSigner(account).connectUnchecked()
@@ -16,9 +33,10 @@ export function useContract(contractJson) {
     const { ethereum } = window;
     const web3 = new Web3(ethereum);
 
-    web3.eth.net.getId().then((networkId) => {
+    web3.eth.net.getId().then((networkId: number) => {
+      console.log("networkId", networkId);
       const _address = contractJson.networks[networkId]?.address;
-      console.log("networkId", contractJson);
+      console.log("contractJson", contractJson);
       if (_address) {
         setAddress(_address);
         setInstance(new web3.eth.Contract(contractJson.abi, _address));
@@ -26,10 +44,6 @@ export function useContract(contractJson) {
         setError("No Contract found.");
         setAddress("");
         setInstance(undefined);
-      }
-      if (networkId == "1337") {
-        setAddress("0x86AFD8E4356C8ADb6Add2E161B31B5C674ef8964");
-        setInstance(new web3.eth.Contract(contractJson.abi, _address));
       }
     });
   }, [contractJson, chainId]);

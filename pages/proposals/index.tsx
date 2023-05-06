@@ -1,26 +1,33 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useWeb3React } from "@web3-react/core";
 import ProposalIntroCard from "../../components/cards/ProposalIntroCard";
 import ProposalCard from "../../components/cards/ProposalCard";
 import { proposalsData } from "../../data/proposals";
-import CodeMavericksGouvernance from "../../contracts/CodeMavericksGouvernance.json";
-import { useContract } from '../../hooks/useContract'
+import CodeMavricksNft from "../../contracts/CodeMavricksNft.json";
+import { useContract } from "../../hooks/useContract";
+import { GetServerSideProps } from "next";
 
 function proposals() {
   const { account } = useWeb3React();
-
+      const { contract } = useContract(CodeMavricksNft);
+      console.log("we are here");
+      console.log("contract", contract);
+      
   const router = useRouter();
-  const contract = useContract(CodeMavericksGouvernance)
-  console.log("contract",contract)
 
-  //   useEffect(() => {
-  //     // This code will only run on the client-side
-  //     if (!account) {
-  //       router.push("/");
-  //     }
-  //   }, [account]);
+  useEffect(() => {
+    // This code will only run on the client-side
+    // if (!account) {
+    //   router.push("/");
+    // }
+    async function getBaseUri() {
+      let baseUri = await contract?.methods?.baseURI().call();
+      console.log("baseUri", baseUri);
+    }
+    getBaseUri()
+  }, [account,contract]);
 
   return (
     <>
@@ -46,5 +53,24 @@ function proposals() {
     </>
   );
 }
+
+// export const getServerSideProps: GetServerSideProps = async ({}) => {
+//   let baseUri: any;
+//   try {
+//     // get plans
+//     const { contract } = useContract(CodeMavricksNft);
+//     console.log("we are here");
+//     console.log("contract", contract);
+//     baseUri = await contract?.methods?._baseURI().call();
+
+//   } catch (error) {
+//     console.log(error);
+//   }
+//   return {
+//     props: {
+//       baseUri,
+//     },
+//   };
+// };
 
 export default proposals;
