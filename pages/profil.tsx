@@ -4,7 +4,7 @@ import useBalance from "../hooks/useBalance";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-const Profil = () => {
+const profil = () => {
   const { account } = useWeb3React();
   const router = useRouter();
 
@@ -187,4 +187,4 @@ const Profil = () => {
   );
 };
 
-export default Profil;
+export default profil;
