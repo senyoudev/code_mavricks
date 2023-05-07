@@ -7,7 +7,6 @@ import ProposalCard from "../../components/cards/ProposalCard";
 import { proposalsData } from "../../data/proposals";
 import CodeMavricksNft from "../../contracts/CodeMavricksNft.json";
 import { useContract } from "../../hooks/useContract";
-import { GetServerSideProps } from "next";
 
 function proposals() {
   const { account } = useWeb3React();
@@ -54,23 +53,6 @@ function proposals() {
   );
 }
 
-// export const getServerSideProps: GetServerSideProps = async ({}) => {
-//   let baseUri: any;
-//   try {
-//     // get plans
-//     const { contract } = useContract(CodeMavricksNft);
-//     console.log("we are here");
-//     console.log("contract", contract);
-//     baseUri = await contract?.methods?._baseURI().call();
 
-//   } catch (error) {
-//     console.log(error);
-//   }
-//   return {
-//     props: {
-//       baseUri,
-//     },
-//   };
-// };
 
 export default proposals;
