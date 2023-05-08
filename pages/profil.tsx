@@ -50,7 +50,7 @@ const profil = () => {
       console.log(error)
     }
   }
-  
+
 
   const storeData = async () => {
     if (contract && contract.contract) {
@@ -58,6 +58,39 @@ const profil = () => {
       console.log(methods);
     }
   };
+
+
+  const getTokenIdFromAddress = async (contract: any, account: string): Promise<number | null> => {
+    const balance = await contract?.contract?.methods.balanceOf(account).call();
+    for (let i = 0; i < balance; i++) {
+      const tokenId = await contract.methods.tokenOfOwnerByIndex(account, i).call();
+      const tokenUri = await contract.methods.tokenURI(tokenId).call();
+      const baseURI = await contract.methods.baseURI().call(); 
+      // Check if the token URI belongs to this contract and extract the token ID from it
+      if (tokenUri.startsWith(baseURI)) {
+        const baseUriLength = baseURI.length;
+        const tokenIdStr = tokenUri.substring(baseUriLength + 1, tokenUri.length);
+        const tokenId = parseInt(tokenIdStr);
+        console.log(`Token ID: ${tokenId}`);
+        return tokenId;
+      }
+    }
+    // No token found for this account
+    return null;
+  };
+
+  const [tokenId, setTokenId] = useState<number | null>(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      if (contract && account) {
+        const id = await getTokenIdFromAddress(contract, account);
+        console.log(tokenId);
+        setTokenId(id);
+        console.log(tokenId);
+      }
+    };
+    fetchData();
+  }, [contract, account]);
 
 
   return (
