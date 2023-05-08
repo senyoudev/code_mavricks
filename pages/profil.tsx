@@ -99,6 +99,7 @@ const profil = () => {
 
           <div className="col-span-1 md:col-span-2 lg:col-span-2 flex items-center justify-center ">
             <button
+            onClick={mintNFT}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded mt-2 border-2 border-solid border-purple-900 shadow-lg px-4 py-2"
               style={{
                 background:
@@ -107,7 +108,7 @@ const profil = () => {
               }}
             >
               <span className="font-mavenPro font-normal font-semibold text-lg capitalize text-blackPurple flex items-center">
-                + New Proposal
+                + mintNFT
               </span>
             </button>
           </div>
