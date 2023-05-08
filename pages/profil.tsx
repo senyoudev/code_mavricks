@@ -39,11 +39,18 @@ const profil = () => {
   const mintNFT = async(e: { preventDefault: () => void; })=>{
     e.preventDefault();
     try {
-      await contract?.contract?.methods.mint(account).send({from:account, gas:GAS_Amount});
+      const balance = await contract?.contract?.methods.balanceOf(account).call();
+      if (balance === '0') {
+        await contract?.contract?.methods.mint(account).send({from:account, gas:GAS_Amount});
+        console.log("NFT minted successfully");
+      } else {
+        console.log("User already has an NFT");
+      }
     } catch (error) {
       console.log(error)
     }
   }
+  
 
   const storeData = async () => {
     if (contract && contract.contract) {
