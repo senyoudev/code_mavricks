@@ -5,17 +5,15 @@ import { useWeb3React } from "@web3-react/core";
 import ProposalIntroCard from "../../components/cards/ProposalIntroCard";
 import ProposalCard from "../../components/cards/ProposalCard";
 import { proposalsData } from "../../data/proposals";
-import CodeMavericksGouvernance from "../../contracts/CodeMavericksGouvernance.json";
+import CodeMavricksNft from "../../contracts/CodeMavricksNft.json";
 import { useContract } from "../../hooks/useContract";
-import { TOKEN_SYMBOL_MAP } from "../../data/tokensInfos";
 
 function proposals() {
-  const [daoBalance, setDaoBalance] = useState(0);
-  const [symbol, setSymbol] = useState("Eth");
-  const [proposals,setProposals] = useState([])
-  const { account, chainId } = useWeb3React();
-  const { contract } = useContract(CodeMavericksGouvernance);
-
+  const { account } = useWeb3React();
+      const { contract } = useContract(CodeMavricksNft);
+      console.log("we are here");
+      console.log("contract", contract);
+      
   const router = useRouter();
 
   useEffect(() => {
@@ -23,18 +21,12 @@ function proposals() {
     // if (!account) {
     //   router.push("/");
     // }
-
-    async function getInfos() {
-      let balance = await contract?.methods?.getDaoBalance().call();
-      let props = await contract?.methods?.getProposals().call();
-      setProposals(props)
-      setDaoBalance(balance);
-      const tokenSymbol = TOKEN_SYMBOL_MAP[chainId!];
-      setSymbol(tokenSymbol);
-      console.log("proposals",props)
+    async function getBaseUri() {
+      let baseUri = await contract?.methods?.baseURI().call();
+      console.log("baseUri", baseUri);
     }
-    getInfos();
-  }, [account, contract, chainId]);
+    getBaseUri()
+  }, [account,contract]);
 
   return (
     <>
@@ -44,7 +36,7 @@ function proposals() {
       </Head>
       <div className=" min-h-screen flex flex-col">
         <main className="flex-grow p-6  justify-between">
-          <ProposalIntroCard balance={daoBalance} tokenSymbol={symbol} />
+          <ProposalIntroCard />
           <div className="max-w-7xl">
             <h1 className="font-sahitya text-primaryBlack md:text-5xl text-2xl pl-10 lg:pl-32 md:leading-extra-loose  ">
               Proposals
@@ -60,5 +52,7 @@ function proposals() {
     </>
   );
 }
+
+
 
 export default proposals;

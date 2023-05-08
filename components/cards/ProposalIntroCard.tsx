@@ -1,14 +1,7 @@
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { TOKEN_SYMBOL_MAP } from "../../data/tokensInfos";
-import { useWeb3React } from "@web3-react/core";
+import React from "react";
 
-type prop = {
-  balance: String | number;
-  tokenSymbol?: String;
-};
-
-function ProposalIntroCard({ balance, tokenSymbol }: prop) {
+function ProposalIntroCard() {
   return (
     <div className="max-w-7xl mx-auto bg-white rounded-md shadow-lg w-full overflow-hidden sm:rounded-lg mb-20">
       <div className="px-4 py-5 sm:px-6 flex justify-between items-center">
@@ -20,30 +13,18 @@ function ProposalIntroCard({ balance, tokenSymbol }: prop) {
           />
           <div>
             <h3 className="text-lg leading-6 font-medium text-gray-900">
-              CodeMavericks
+              DAO Name
             </h3>
-            <p className="text-sm text-gray-500 ">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Distinctio temporibus numquam ipsam perferendis quaerat odio quam,
-              dignissimos voluptatum ducimus illo? Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Distinctio temporibus numquam ipsam
-              perferendis quaerat odio quam, dignissimos voluptatum ducimus
-              illo?
+            <p className="text-sm text-gray-500">
+              A short description of the DAO.
             </p>
             <p className="text-sm text-gray-500 font-medium">
-              Network: Polygon (ERC20)
+              Network: Ethereum (ERC20)
             </p>
-            <p className="text-sm text-gray-500">
-              Total Balance: {balance}
-              {""}
-              {tokenSymbol}
-            </p>
+            <p className="text-sm text-gray-500">Total Balance: 10,000 ETH</p>
           </div>
         </div>
-        <Link
-          href="/proposals/create"
-          className="text-white bg-darkPurple hover:bg-blackPurple  font-medium py-2 px-4 rounded"
-        >
+        <Link href='/proposals/create' className="text-white bg-darkPurple hover:bg-blackPurple  font-medium py-2 px-4 rounded">
           Create Proposal
         </Link>
       </div>
