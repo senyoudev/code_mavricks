@@ -99,9 +99,9 @@ function proposals() {
             </h1>
           </div>
           <div className="max-w-7xl mx-auto flex flex-col gap-y-8">
-            {proposals?.map((proposal) => (
+            {proposals?.map((proposal:Proposal) => (
               <ProposalCard
-                key={proposal?.proposalId}
+                key={proposal.proposalId}
                 proposal={proposal}
                 voteFor={voteFor}
                 voteAgainst={voteAgainst}
