@@ -1,12 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useWeb3React } from "@web3-react/core";
 import useBalance from "../hooks/useBalance";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import CodeMavricksNft from "../contracts/CodeMavricksNft.json";
+import { useContract } from "../hooks/useContract";
+import { injected } from "../utils/connectors";
+
 
 const profil = () => {
-  const { account } = useWeb3React();
+  const GAS_Amount=3000000;
+
+  const { activate, account, chainId } = useWeb3React();
   const router = useRouter();
+  const contract=useContract(CodeMavricksNft);
+
+  const [address, setAddress]=useState("");
 
   useEffect(() => {
     // This code will only run on the client-side
@@ -14,8 +23,36 @@ const profil = () => {
       router.push("/");
     }
   }, [account, router]);
+
+  useEffect(()=>{
+    activate(injected)
+  },[])
+
+  useEffect(()=>{
+    storeData()
+  },[contract,chainId])
+
+  
   const balance = useBalance();
   const accountLength = String(account).length;
+
+  const mintNFT = async(e: { preventDefault: () => void; })=>{
+    e.preventDefault();
+    try {
+      await contract?.contract?.methods.mint(account).send({from:account, gas:GAS_Amount});
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const storeData = async () => {
+    if (contract && contract.contract) {
+      const methods = Object.keys(contract.contract.methods);
+      console.log(methods);
+    }
+  };
+
+
   return (
     <div className="bg-linearPurple md:px-70 py-16 w-full flex items-center justify-center">
       <div className="container mx-auto px-10 py-6 flex flex-col justify-around items-center bg-linearPurple shadow-3xl border-2 border-solid border-secondaryPurple rounded" style={{maxWidth:"1440px"}}>
