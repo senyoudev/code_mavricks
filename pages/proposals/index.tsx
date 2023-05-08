@@ -6,7 +6,7 @@ import ProposalIntroCard from "../../components/cards/ProposalIntroCard";
 import ProposalCard from "../../components/cards/ProposalCard";
 import CodeMavericksGouvernance from "../../contracts/CodeMavericksGouvernance.json";
 import { useContract } from "../../hooks/useContract";
-import { TOKEN_SYMBOL_MAP } from "../../data/tokensInfos";
+import { TOKEN_SYMBOL_MAP } from "../../data/tokenInfos";
 import { Proposal } from "../../interfaces/Proposal";
 import { toast } from "react-toastify";
 
@@ -48,7 +48,7 @@ function proposals() {
       console.log("proposals", parsedProposals);
     }
     getInfos();
-  }, [account, contract, chainId]);
+  }, [account, contract]);
 
   const voteFor = async (proposalId: String | number) => {
     try {
@@ -92,14 +92,14 @@ function proposals() {
       </Head>
       <div className=" min-h-screen flex flex-col">
         <main className="flex-grow p-6  justify-between">
-          <ProposalIntroCard balance={daoBalance} tokenSymbol={symbol} />
+          <ProposalIntroCard />
           <div className="max-w-7xl">
             <h1 className="font-sahitya text-primaryBlack md:text-5xl text-2xl pl-10 lg:pl-32 md:leading-extra-loose  ">
               Proposals
             </h1>
           </div>
           <div className="max-w-7xl mx-auto flex flex-col gap-y-8">
-            {proposals?.map((proposal:Proposal) => (
+            {proposals?.map((proposal: Proposal) => (
               <ProposalCard
                 key={proposal.proposalId}
                 proposal={proposal}
