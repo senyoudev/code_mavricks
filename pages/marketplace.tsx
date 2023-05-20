@@ -2,31 +2,56 @@ import { Card, Grid, Text, Button, Row } from "@nextui-org/react";
 import Head from "next/head";
 import { nftsData } from "../data/nfts";
 import MarketplaceCard from "../components/cards/MarketplaceCard";
-import Table from "@nextui-org/react";
-import TableNFT from "../components/cards/TableNFT";
+import { useWeb3React } from "@web3-react/core";
+import { useContract } from "../hooks/useContract";
+import CodeMavricksNft from "../contracts/CodeMavricksNft.json";
+import CodeMavericksMarketPlace from "../contracts/CodeMavericksMarketPlace.json";
+import { useEffect } from "react";
+
 export default function marketplace() {
+  const { account, chainId } = useWeb3React();
+ const { contract: nftContract } = useContract(CodeMavricksNft);
+ const { contract: marketplaceContract } = useContract(
+   CodeMavericksMarketPlace
+ );
+
+
+   useEffect(() => {
+     // This code will only run on the client-side
+     // if (!account) {
+     //   router.push("/");
+     // }
+
+     async function getInfos() {
+       let nftsForSales = await marketplaceContract?.methods
+         ?.getNFTsForSale()
+         .call();
+       console.log("nftsForSales", nftsForSales);
+     }
+     getInfos();
+   }, [account, nftContract, marketplaceContract]);
 
   return (
     <>
-    <Head>
-      <title>Code Mavricks</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-    <div className=" min-h-screen flex flex-col">
-      <main className="flex-grow px-20 justify-between">
-        <TableNFT/>
-        <div className="max-w-7xl">
-          <h1 className="font-sahitya text-primaryBlack md:text-5xl text-2xl pl-10 lg:pl-32 md:leading-extra-loose  ">
-          Notable Collections
-          </h1>
-        </div>
-        <div className="max-w-7xl mx-auto flex flex-col gap-y-8">
-          {nftsData.map((nft) => (
-            <MarketplaceCard key={nft.NFTId} nft={nft} />
-          ))}
-        </div>
-      </main>
-    </div>
-  </>
+      <Head>
+        <title>Code Mavricks</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <div className=" min-h-screen flex flex-col">
+        <main className="flex-grow px-20 justify-between">
+          {/* <TableNFT /> */}
+          <div className="max-w-7xl">
+            <h1 className="font-sahitya text-primaryBlack md:text-5xl text-2xl pl-10 lg:pl-32 md:leading-extra-loose  ">
+              Notable Collections
+            </h1>
+          </div>
+          <div className="max-w-7xl mx-auto flex flex-col gap-y-8 mb-10">
+            {nftsData.map((nft) => (
+              <MarketplaceCard key={nft.NFTId} nft={nft} />
+            ))}
+          </div>
+        </main>
+      </div>
+    </>
   );
 }

@@ -1,7 +1,12 @@
 import Link from "next/link";
 import React from "react";
 
-function ProposalIntroCard() {
+interface prop {
+  balance:Number;
+}
+
+
+function ProposalIntroCard({balance}:prop) {
   return (
     <div className="max-w-7xl mx-auto bg-white rounded-md shadow-lg w-full overflow-hidden sm:rounded-lg mb-20">
       <div className="px-4 py-5 sm:px-6 flex justify-between items-center">
@@ -21,7 +26,7 @@ function ProposalIntroCard() {
             <p className="text-sm text-gray-500 font-medium">
               Network: Ethereum (ERC20)
             </p>
-            <p className="text-sm text-gray-500">Total Balance: 10,000 ETH</p>
+            <p className="text-sm text-gray-500">Total Balance: {balance?.toString()} CVM</p>
           </div>
         </div>
         <Link href='/proposals/create' className="text-white bg-darkPurple hover:bg-blackPurple  font-medium py-2 px-4 rounded">
