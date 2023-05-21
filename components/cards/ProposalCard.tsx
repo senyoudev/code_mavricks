@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { Proposal } from "../../interfaces/Proposal";
+import moment from "moment";
 
 interface ProposalCardProps {
   proposal: Proposal;
@@ -23,6 +24,9 @@ const ProposalCard: React.FC<ProposalCardProps> = ({
     againstVotes,
     timeRemaining,
   } = proposal;
+
+   const date = new Date(Number(timeRemaining) * 1000); // Multiply by 1000 to convert from seconds to milliseconds
+
 
   
 
@@ -99,11 +103,13 @@ const ProposalCard: React.FC<ProposalCardProps> = ({
             </button>
           </div>
           <div className="text-sm text-gray-500">
-            {forVotes} For / {againstVotes} Against / {forVotes + againstVotes}{" "}
-            Total
+            {forVotes} For / {againstVotes} Against /{" "}
+            {Number(forVotes) + Number(againstVotes)} Total
           </div>
         </div>
-        <div className="text-sm text-gray-500 mt-2">{timeRemaining} Left</div>
+        <div className="text-sm text-gray-500 mt-2">
+         Ends {moment(date).startOf("hour").fromNow()} 
+        </div>
       </div>
     </div>
   );
