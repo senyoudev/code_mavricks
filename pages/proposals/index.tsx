@@ -16,6 +16,7 @@ function proposals() {
   const [proposals, setProposals] = useState([]);
   const { account, chainId } = useWeb3React();
   const { contract } = useContract(CodeMavericksGouvernance);
+  const [isLoading, setLoading] = useState(false);
 
   const router = useRouter();
   const GAS_AMOUNT = 300000;
@@ -51,6 +52,7 @@ function proposals() {
   }, [account, contract]);
 
   const voteFor = async (proposalId: String | number) => {
+    setLoading(true);
     try {
       const res = await contract?.methods
         .voteWithToken(proposalId, true)
@@ -58,16 +60,19 @@ function proposals() {
       console.log(res);
       // If no errors or exceptions, display a success message
       toast.success("Your vote was successfully cast.");
+      setLoading(false);
     } catch (error) {
       console.error(error);
       // If there's an error or exception, display an error message
       toast.error(
         "Sorry, there was an error casting your vote.either you already vote or you dont have the right to do it"
       );
+      setLoading(false);
     }
   };
 
   const voteAgainst = async (proposalId: String | number) => {
+    setLoading(true)
     try {
       const res = await contract?.methods
         .voteWithToken(proposalId, false)
@@ -75,12 +80,14 @@ function proposals() {
       console.log(res);
       // If no errors or exceptions, display a success message
       toast.success("Your vote was successfully cast.");
+      setLoading(false)
     } catch (error) {
       console.error(error);
       // If there's an error or exception, display an error message
       toast.error(
         "Sorry, there was an error casting your vote.either you already vote or you dont have the right to do it"
       );
+      setLoading(false)
     }
   };
 
@@ -92,7 +99,7 @@ function proposals() {
       </Head>
       <div className=" min-h-screen flex flex-col">
         <main className="flex-grow p-6  justify-between">
-          <ProposalIntroCard />
+          <ProposalIntroCard balance={daoBalance} />
           <div className="max-w-7xl">
             <h1 className="font-sahitya text-primaryBlack md:text-5xl text-2xl pl-10 lg:pl-32 md:leading-extra-loose  ">
               Proposals
@@ -105,6 +112,7 @@ function proposals() {
                 proposal={proposal}
                 voteFor={voteFor}
                 voteAgainst={voteAgainst}
+                isLoading={isLoading}
               />
             ))}
           </div>
