@@ -3,15 +3,13 @@ import { useWeb3React } from "@web3-react/core";
 import useBalance from "../hooks/useBalance";
 import Image from "next/image";
 import { useRouter } from "next/router";
-<<<<<<< HEAD
+
 import { useContract } from "../hooks/useContract";
 import CodeMavricksNft from "../contracts/CodeMavricksNft.json";
 import Link from "next/link";
 import { Button } from "@nextui-org/react";
 import { getNFTMetadata } from "../utils/getNftMetada";
 import { SkeletonLoader } from "../components/Loaders/SkeletonLoader";
-
-
 
 const profil = () => {
   const { account } = useWeb3React();
@@ -20,22 +18,12 @@ const profil = () => {
   const [userBalance, setUserBalance] = useState(0);
   const [image, setImage] = useState<String | null>("");
   const [desc, setDesc] = useState<String | null>("");
+  const balance = useBalance();
+  const accountLength = account?.length;
 
-=======
-import CodeMavricksNft from "../contracts/CodeMavricksNft.json";
-import { useContract } from "../hooks/useContract";
-import { injected } from "../utils/connectors";
-
-
-const profil = () => {
-  const GAS_Amount=3000000;
-
-  const { activate, account, chainId } = useWeb3React();
->>>>>>> origin
   const router = useRouter();
-  const contract=useContract(CodeMavricksNft);
 
-  const [address, setAddress]=useState("");
+  const [address, setAddress] = useState("");
 
   const getUserNft = async () => {
     const balance = await contract?.methods.balanceOf(account).call();
@@ -66,33 +54,6 @@ const profil = () => {
     // }
     getUserNft();
   }, [account, router, userBalance, contract]);
-
-
-  const balance = useBalance();
-  const accountLength = String(account).length;
-
-  // const mintNFT = async(e: { preventDefault: () => void; })=>{
-  //   e.preventDefault();
-  //   try {
-  //     const balance = await contract?.contract?.methods.balanceOf(account).call();
-  //     if (balance === '0') {
-  //       await contract?.contract?.methods.mint(account).send({from:account, gas:GAS_Amount});
-  //       console.log("NFT minted successfully");
-  //     } else {
-  //       console.log("User already has an NFT");
-  //     }
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
-
-
-
-
-
-
-
-
 
   return (
     <div className="bg-linearPurple md:px-70 py-16 w-full flex items-center justify-center">
@@ -137,7 +98,7 @@ const profil = () => {
                   {`${String(account).substring(0, 7)}` +
                     "..." +
                     `${String(account).substring(
-                      accountLength - 4,
+                      accountLength! - 4,
                       accountLength
                     )}`}
                 </p>
@@ -146,21 +107,35 @@ const profil = () => {
           </div>
 
           <div className="col-span-1 md:col-span-2 lg:col-span-2 flex items-center justify-center ">
-
-            <button
-            onClick={mintNFT}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded mt-2 border-2 border-solid border-purple-900 shadow-lg px-4 py-2"
-              style={{
-                background:
-                  "linear-gradient(180deg, rgba(225, 209, 244, 0) 0%, rgba(225, 209, 244, 0.2) 100%)",
-                borderRadius: "5px",
-              }}
-            >
-              <span className="font-mavenPro font-normal font-semibold text-lg capitalize text-blackPurple flex items-center">
-                + mintNFT
-              </span>
-            </button>
->>>>>>> origin
+            {userBalance != 0 ? (
+              <Link
+                href="/proposals/create"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded mt-2 border-2 border-solid border-purple-900 shadow-lg px-4 py-2"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(225, 209, 244, 0) 0%, rgba(225, 209, 244, 0.2) 100%)",
+                  borderRadius: "5px",
+                }}
+              >
+                <span className="font-mavenPro font-normal text-lg capitalize text-blackPurple flex items-center">
+                  + New Proposal
+                </span>
+              </Link>
+            ) : (
+              <Button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded mt-2 border-2 border-solid border-purple-900 shadow-lg px-4 py-2"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(225, 209, 244, 0) 0%, rgba(225, 209, 244, 0.2) 100%)",
+                  borderRadius: "5px",
+                }}
+              >
+                <span className="font-mavenPro font-normal  text-lg capitalize text-blackPurple flex items-center">
+                  Mint An Nft
+                </span>
+              </Button>
+            )}
+          
           </div>
         </div>
 
