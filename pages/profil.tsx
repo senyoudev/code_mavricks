@@ -5,44 +5,22 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useContract } from "../hooks/useContract";
 import CodeMavricksNft from "../contracts/CodeMavricksNft.json";
+import Link from "next/link";
+import { Button } from "@nextui-org/react";
+import { getNFTMetadata } from "../utils/getNftMetada";
+import { SkeletonLoader } from "../components/Loaders/SkeletonLoader";
 
-const SkeletonLoader = () => {
-  return (
-    <div>
-      {/* Placeholders for skeleton loading */}
-      <div className="skeleton-image" />
-      <div className="skeleton-text" />
-    </div>
-  );
-};
+
 
 const profil = () => {
   const { account } = useWeb3React();
   const { contract } = useContract(CodeMavricksNft);
   const [isLoading, setLoading] = useState(true);
   const [userBalance, setUserBalance] = useState(0);
-  const [image, setImage] = useState("");
-  const [desc, setDesc] = useState("");
+  const [image, setImage] = useState<String | null>("");
+  const [desc, setDesc] = useState<String | null>("");
 
   const router = useRouter();
-
-  async function getNFTMetadata(ipfsUrl: string): Promise<void> {
-    try {
-      const response = await fetch(ipfsUrl);
-      const data = await response.json();
-
-      const description: string = data.description;
-      const imageUrl: string = data.image;
-
-      // Use the retrieved description and image URL as needed
-      setImage(imageUrl);
-      setDesc(description);
-    } catch (error) {
-      console.error("Error retrieving NFT metadata:", error);
-    } finally {
-      setLoading(false);
-    }
-  }
 
   const getUserNft = async () => {
     const balance = await contract?.methods.balanceOf(account).call();
@@ -51,22 +29,26 @@ const profil = () => {
         .tokenOfOwnerByIndex(account, 0)
         .call();
       const ipfsUrl = await contract?.methods.tokenURI(tokenId).call();
-      await getNFTMetadata(ipfsUrl);
+      const data = await getNFTMetadata(ipfsUrl);
+      if (data != undefined) {
+        setDesc(data.description);
+        setImage(data.image);
+      }
     } else {
       setImage("/assets/images/R.jpg");
       setDesc(
         "Lorem ipsum dolor sit amet consectetur. Volutpat pellentesque purus et at. Mi volutpat rhoncus non rutrum risus. Urna egestas blandit lectus ac risus. Malesuada eros in elit sed nunc ultrices. Magna facilisis amet nibh bibendum. Tellus eget eget quam at platea et. Vulputate tincidunt faucibus aliquet velit sed massa augue cras."
       );
     }
-
     setUserBalance(balance);
+    setLoading(false);
   };
 
   useEffect(() => {
     // This code will only run on the client-side
-    if (!account) {
-      router.push("/");
-    }
+    // if (!account) {
+    //   router.push("/");
+    // }
     getUserNft();
   }, [account, router, userBalance, contract]);
 
@@ -84,7 +66,7 @@ const profil = () => {
               <SkeletonLoader />
             ) : (
               <Image
-                src={image}
+                src={image != null ? image : "/assets/images/R.jpg"}
                 alt="profile image"
                 width={150}
                 height={150}
@@ -125,7 +107,8 @@ const profil = () => {
 
           <div className="col-span-1 md:col-span-2 lg:col-span-2 flex items-center justify-center ">
             {userBalance != 0 ? (
-              <button
+              <Link
+                href="/proposals/create"
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded mt-2 border-2 border-solid border-purple-900 shadow-lg px-4 py-2"
                 style={{
                   background:
@@ -133,12 +116,12 @@ const profil = () => {
                   borderRadius: "5px",
                 }}
               >
-                <span className="font-mavenPro font-normal font-semibold text-lg capitalize text-blackPurple flex items-center">
+                <span className="font-mavenPro font-normal text-lg capitalize text-blackPurple flex items-center">
                   + New Proposal
                 </span>
-              </button>
+              </Link>
             ) : (
-              <button
+              <Button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded mt-2 border-2 border-solid border-purple-900 shadow-lg px-4 py-2"
                 style={{
                   background:
@@ -146,10 +129,10 @@ const profil = () => {
                   borderRadius: "5px",
                 }}
               >
-                <span className="font-mavenPro font-normal font-semibold text-lg capitalize text-blackPurple flex items-center">
+                <span className="font-mavenPro font-normal  text-lg capitalize text-blackPurple flex items-center">
                   Mint An Nft
                 </span>
-              </button>
+              </Button>
             )}
           </div>
         </div>
