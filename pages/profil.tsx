@@ -3,14 +3,13 @@ import { useWeb3React } from "@web3-react/core";
 import useBalance from "../hooks/useBalance";
 import Image from "next/image";
 import { useRouter } from "next/router";
+
 import { useContract } from "../hooks/useContract";
 import CodeMavricksNft from "../contracts/CodeMavricksNft.json";
 import Link from "next/link";
 import { Button } from "@nextui-org/react";
 import { getNFTMetadata } from "../utils/getNftMetada";
 import { SkeletonLoader } from "../components/Loaders/SkeletonLoader";
-
-
 
 const profil = () => {
   const { account } = useWeb3React();
@@ -19,12 +18,12 @@ const profil = () => {
   const [userBalance, setUserBalance] = useState(0);
   const [image, setImage] = useState<String | null>("");
   const [desc, setDesc] = useState<String | null>("");
-
+  const balance = useBalance();
+  const accountLength = account?.length;
 
   const router = useRouter();
-  const contract=useContract(CodeMavricksNft);
 
-  const [address, setAddress]=useState("");
+  const [address, setAddress] = useState("");
 
   const getUserNft = async () => {
     const balance = await contract?.methods.balanceOf(account).call();
@@ -55,8 +54,6 @@ const profil = () => {
     // }
     getUserNft();
   }, [account, router, userBalance, contract]);
-
-
 
   return (
     <div className="bg-linearPurple md:px-70 py-16 w-full flex items-center justify-center">
@@ -101,7 +98,7 @@ const profil = () => {
                   {`${String(account).substring(0, 7)}` +
                     "..." +
                     `${String(account).substring(
-                      accountLength - 4,
+                      accountLength! - 4,
                       accountLength
                     )}`}
                 </p>
@@ -138,19 +135,7 @@ const profil = () => {
                 </span>
               </Button>
             )}
-            <button
-            onClick={mintNFT}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded mt-2 border-2 border-solid border-purple-900 shadow-lg px-4 py-2"
-              style={{
-                background:
-                  "linear-gradient(180deg, rgba(225, 209, 244, 0) 0%, rgba(225, 209, 244, 0.2) 100%)",
-                borderRadius: "5px",
-              }}
-            >
-              <span className="font-mavenPro font-normal font-semibold text-lg capitalize text-blackPurple flex items-center">
-                + mintNFT
-              </span>
-            </button>
+          
           </div>
         </div>
 
