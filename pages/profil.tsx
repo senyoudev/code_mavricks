@@ -67,7 +67,7 @@ const profil = () => {
               <SkeletonLoader />
             ) : (
               <Image
-                src={image != null ? image : "/assets/images/R.jpg"}
+                src={image != null ? image.toString() : "/assets/images/R.jpg"}
                 alt="profile image"
                 width={150}
                 height={150}
